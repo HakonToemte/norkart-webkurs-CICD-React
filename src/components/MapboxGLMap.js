@@ -6,11 +6,14 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import MapboxWorker from "worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker"; // Load worker code separately with worker-loader
 import LocationMenu from "./LocationMenu";
 import StyleMenu from "./StyleMenu";
+import { AdresseBoks } from "./AdresseBoks";
+import { FritekstSok } from "./FritekstSok";
+import DrawComponent from "./DrawComponent";
 mapboxgl.workerClass = MapboxWorker; // Wire up loaded worker to be used instead of the default
 
 const styles = {
   width: "100%",
-  height: "calc(100vh - 80px)",
+  height: "100%",
   position: "absolute",
 };
 
@@ -42,7 +45,9 @@ const MapboxGLMap = () => {
 
   return (
     <>
-      <LocationMenu mapConnection={map}></LocationMenu>
+      {/*<LocationMenu mapConnection={map}></LocationMenu>*/}
+      <DrawComponent mapConnection={map} ></DrawComponent>
+      <AdresseBoks mapConnection={map}></AdresseBoks>
       <StyleMenu mapConnection={map}></StyleMenu>
       <div ref={(el) => (mapContainer.current = el)} style={styles} />;
     </>

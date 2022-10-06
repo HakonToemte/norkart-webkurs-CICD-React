@@ -20,8 +20,8 @@ const StyleMenu = (props) => {
   const map = props.mapConnection;
   console.log(map);
   
-  const flyTo = (coordinates) => {
-    map.flyTo({ center: coordinates });
+  const setStyle = (style) => {
+    map.setStyle(style);
   };
 
   // Om vi har tilgang til kartet, render component. Ellers returner et tomt HTML objekt.
@@ -29,16 +29,16 @@ const StyleMenu = (props) => {
     <>
       {map ? (
         <div style={menuStyle}>
-          {locations.map((location) => (
-            <div key={location.center}>
+          {styles.map((iterator) => (
+            <div key={iterator.style}>
               <input
-                id={location.center}
+                id={iterator.style}
                 type="radio"
                 name="rtoggle"
-                value={location.center}
-                onClick={() => flyTo(location.center)}
+                value={iterator.style}
+                onClick={() => setStyle(iterator.style)}
               />
-              <label>{location.name}</label>
+              <label>{iterator.name}</label>
             </div>
           ))}
         </div>

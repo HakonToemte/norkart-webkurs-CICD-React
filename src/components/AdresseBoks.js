@@ -10,8 +10,13 @@ const AdresseBoksStyle = {
   right: 0,
 };
 
-export const AdresseBoks = () => {
+export const AdresseBoks = (props) => {
   const [selectedAdress, setSelectedAdress] = useState(null);
+  const map = props.mapConnection;
+  const FlyHit = (x, y) => {
+    let coordinates = [y,x];
+    map.flyTo({ center: coordinates, zoom:16 });
+  };
 
   return (
     <div style={AdresseBoksStyle}>
@@ -27,6 +32,7 @@ export const AdresseBoks = () => {
             <li>Longitude: {selectedAdress.latlng.lng}</li>
             <li>Text: {selectedAdress.text}</li>
           </ul>
+          <button onClick={() => {FlyHit(selectedAdress.latlng.lat, selectedAdress.latlng.lng)}}> Fly hit!</button>
         </div>
       ) : (
         <></>

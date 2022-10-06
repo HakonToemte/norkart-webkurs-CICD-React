@@ -9,8 +9,6 @@ const styles = {
 function App() {
   return (
     <div style={styles}>
-    Håkon was here
-      <Header />
       <MapboxGLMap />
     </div>
   );

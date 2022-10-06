@@ -18,16 +18,22 @@ const DrawComponent = (props) => {
       displayControlsDefault: false,
       // Select which mapbox-gl-draw control buttons to add to the map.
       controls: {
-        polygon: true,
+        polygon:false,
+        line_string: true,
         trash: true,
       },
     });
     map.addControl(draw);
+    map.on('click', regnAvstand);
+    function regnAvstand(e) {
+      const data = draw.getAll();
+      const answer = document.getElementById('calculated-area');
+      }
   }, [map]);
 
   // Se flere muligheter med Draw Modulen til MapBox: https://github.com/mapbox/mapbox-gl-draw/blob/main/docs/API.md
   // Om vi har tilgang til kartet, render component. Ellers returner et tomt HTML objekt.
-  return <>{map ? <div style={drawStyle}>TegneModus Aktivert</div> : <></>}</>;
+  return <>{map ? <></> : <></>}</>;
 };
 
 export default DrawComponent;
